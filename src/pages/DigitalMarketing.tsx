@@ -49,29 +49,17 @@ const DigitalMarketing = () => {
     <>
       <Helmet>
         <title>Digital Marketing Agency in Bangalore | 10x Your Growth</title>
-        <meta
-          name="description"
-          content="Scale your brand with leading digital marketing company in Bangalore. Our services deliver ROI-focused SEO, PPC & social media strategies. Get a free brand audit"
-        />
-        <meta
-          name="keywords"
-          content="digital marketing agency in bangalore, digital marketing company in bangalore, digital marketing services in bangalore, online marketing company in bangalore, internet marketing services in bangalore"
-        />
-        <link rel="canonical" href="https://www.thesuper30.ai/digital-marketing-agency-bangalore" />
+        <meta name="description" content="Scale your brand with leading digital marketing company in Bangalore. Our services deliver ROI-focused SEO, PPC & social media strategies. Get a free brand audit" />
+        <meta name="keywords" content="AI Digital Marketing Agency in Bangalore, AI Digital Marketing Company In Bangalore, AI Digital Marketing Services In Bangalore, Digital Marketing Agency in Bangalore, Digital Marketing Company In Bangalore, Digital Marketing Services In Bangalore, Online marketing company in bangalore, Internet marketing services in bangalore" />
+        <link rel="canonical" href="https://super30ai.lovable.app/digital-marketing-agency-bangalore" />
         <meta property="og:title" content="Is Your Digital Marketing Agency Actually Driving Growth?" />
-        <meta
-          property="og:description"
-          content="Most agencies promise results. We deliver 10x growth with AI-powered strategies. Let's talk today!"
-        />
+        <meta property="og:description" content="Most agencies promise results. We deliver 10x growth with AI-powered strategies. Let's talk today!" />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://www.thesuper30.ai/digital-marketing-agency-bangalore" />
+        <meta property="og:url" content="https://super30ai.lovable.app/digital-marketing-agency-bangalore" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Is Your Digital Marketing Agency Actually Driving Growth?" />
-        <meta
-          name="twitter:description"
-          content="Most agencies promise results. We deliver 10x growth with AI-powered strategies. Let's talk today!"
-        />
-        <meta name="twitter:url" content="https://www.thesuper30.ai/digital-marketing-agency-bangalore" />
+        <meta name="twitter:description" content="Most agencies promise results. We deliver 10x growth with AI-powered strategies. Let's talk today!" />
+        <meta name="twitter:url" content="https://super30ai.lovable.app/digital-marketing-agency-bangalore" />
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
@@ -153,12 +141,12 @@ const DigitalMarketing = () => {
             badgeText="#1 Digital Marketing Agency in Bangalore"
             headline={
               <span className="block text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl leading-[1.2]">
-                <span className="text-brand">Digital Marketing Agency in Bangalore</span> — 10x Your Business Growth
+                <span className="text-brand">AI Digital Marketing Agency in Bangalore</span> for 10x Business Growth
               </span>
             }
             description={
               <>
-                Scale your brand with the leading <span className="text-foreground font-semibold">digital marketing company in Bangalore</span>. Our digital marketing services deliver ROI-focused SEO, PPC and social media strategies — across Koramangala, HSR Layout, Whitefield and Electronic City.
+                Grow your brand with the leading <span className="text-foreground font-semibold">digital marketing company in Bangalore</span>. Our Digital Marketing Services offer ROI driven SEO, PPC & Social Media marketing in Koramangala, HSR Layout, Whitefield & Electronic City.
               </>
             }
             trustSignals={[

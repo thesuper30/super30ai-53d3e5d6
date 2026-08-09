@@ -1,12 +1,13 @@
 import { ServicePageTemplate, ServicePageConfig } from "@/components/service/ServicePageTemplate";
+import { getFaqs } from "@/data/faqs";
 import { Wrench, Shield, Gauge, RefreshCw, Clock, BarChart3, Zap, Globe, Users, Bug, Lock, Eye, Award, Target, Settings, Bell } from "lucide-react";
 
 const config: ServicePageConfig = {
   seo: {
     title: "AMC & Website Maintenance Company in Bangalore",
     description: "Keep your website secure, fast and always online with 99.9% uptime. Website maintenance in Bangalore handles updates, bug fixes, performance and security",
-    keywords: "website maintenance company in bangalore, website maintenance services bangalore, website maintenance in bangalore, website support services in bangalore, website annual maintenance contract, website maintenance packages",
-    canonical: "https://www.thesuper30.ai/website-maintenance-company-bangalore",
+    keywords: "website maintenance company in bangalore, website maintenance services bangalore, website maintenance in bangalore, website support services in bangalore, website maintenance packages",
+    canonical: "https://super30ai.lovable.app/website-maintenance-company-bangalore",
     serviceType: "Website Maintenance Services",
     ogTitle: "A Website That Goes Down Is a Business That Loses Money.",
     ogDescription: "Updates, bug fixes and checks that keep your website secure and performing at its best. Let's talk!",
@@ -97,16 +98,7 @@ const config: ServicePageConfig = {
       "Your site is on a platform that handles everything (like Wix)",
     ],
   },
-  faq: [
-    { question: "What does website maintenance include?", answer: "Our plans include security updates, software updates, speed optimization, daily backups, uptime monitoring, content updates, bug fixes, and monthly reports." },
-    { question: "How much does website maintenance cost?", answer: "Plans start from ₹5,000/month for basic maintenance. Comprehensive plans with priority support and unlimited content updates range from ₹10,000-25,000/month." },
-    { question: "Do you maintain non-WordPress sites?", answer: "Yes. While WordPress is our specialty, we maintain sites built on React, Next.js, Shopify, WooCommerce, and custom platforms." },
-    { question: "How quickly can you fix issues?", answer: "Critical issues (downtime, security breaches) are addressed within 2 hours. Standard issues within 24-48 hours. Content updates within 48 hours." },
-    { question: "Do you offer emergency support?", answer: "Yes. All maintenance plans include emergency support for critical issues like hacking, downtime, or data loss." },
-    { question: "Will maintenance affect my site visitors?", answer: "No. Updates and maintenance are performed during low-traffic hours. We test everything in staging before deploying to your live site." },
-    { question: "Can I cancel anytime?", answer: "Yes. Our maintenance plans are month-to-month with no long-term contracts. Cancel with 30 days notice." },
-    { question: "What happens to my site if I stop maintenance?", answer: "Your site continues working, but without updates, security monitoring, and optimization, risks increase over time. We provide a complete handoff if you decide to leave." },
-  ],
+  faq: getFaqs("website-maintenance"),
   finalCTA: {
     headline: "Hire Bangalore's Trusted Website Maintenance Company",
     description: "Get a free website maintenance health check — discover security, speed, and AMC opportunities to keep your site fast and online.",

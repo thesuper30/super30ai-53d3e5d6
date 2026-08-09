@@ -1,12 +1,13 @@
 import { ServicePageTemplate, ServicePageConfig } from "@/components/service/ServicePageTemplate";
+import { getFaqs } from "@/data/faqs";
 import { Share2, TrendingUp, BarChart3, Users, Zap, Hash, Heart, MessageSquare, Eye, Target, Calendar, Bot, Shield, Globe, Clock, Sparkles } from "lucide-react";
 
 const config: ServicePageConfig = {
   seo: {
     title: "Social Media Optimization Services in Bangalore | SMO",
     description: "Build a stronger social presence with our SMO company in Bangalore. From reels and UGC to influencer marketing, we grow your brand organically. Let's Talk!",
-    keywords: "social media optimization company in bangalore, social media optimization services in bangalore, smo company in bangalore, influencer marketing services in bangalore, social content creation in bangalore",
-    canonical: "https://www.thesuper30.ai/social-media-optimization-services-bangalore",
+    keywords: "AI social media optimization services in bangalore, AI smo company in bangalore, AI social media optimization company in bangalore, social media optimization services in bangalore, smo company in bangalore, social media optimization company in bangalore, influencer marketing services in bangalore, social content creation in bangalore",
+    canonical: "https://super30ai.lovable.app/social-media-optimization-services-bangalore",
     serviceType: "Social Media Optimisation",
     ogTitle: "Your Social Media Presence Speaks Before You Do. Own It.",
     ogDescription: "Reels, UGC & influencer marketing that grow your brand organically. Let's build a social presence!",
@@ -17,13 +18,13 @@ const config: ServicePageConfig = {
     badgeIcon: Share2,
     badgeText: "SMO Company in Bangalore",
     headlineLine1: "Social Media Optimization Services",
-    headlineLine2: "in Bangalore — Own Your Presence",
-    description: <>Our <span className="text-foreground font-semibold">SMO company in Bangalore</span> grows your brand organically with reels, UGC, influencer marketing and social content creation — without relying on paid ads.</>,
+    headlineLine2: "in Bangalore for Brand Visibility",
+    description: <>Our <span className="text-foreground font-semibold">Social Media company in Bangalore</span> builds your brand organically through reels, UGC, creator partnerships, and social content strategies without depending solely on paid ads or promotions.</>,
     trustSignals: [
-      { icon: TrendingUp, text: "Avg. 3x Engagement Increase" },
+      { icon: TrendingUp, text: "Avg. 3x Audience Engagement" },
       { icon: Users, text: "Organic Follower Growth Strategies" },
-      { icon: BarChart3, text: "Data-Driven Content Planning" },
-      { icon: Shield, text: "Platform-Specific Optimization" },
+      { icon: BarChart3, text: "Data Driven Content Planning" },
+      { icon: Shield, text: "Platform Focused Optimization" },
     ],
     credentials: ["300+ Brands Optimized", "Multi-Platform Expertise", "Content-First Approach"],
     formTitle: "Free SMO Audit in Bangalore",
@@ -97,16 +98,7 @@ const config: ServicePageConfig = {
       "You only care about vanity metrics, not business results",
     ],
   },
-  faq: [
-    { question: "What's the difference between SMO and social media marketing?", answer: "SMO focuses on optimizing your profiles, content, and strategy for organic growth. Social media marketing typically includes paid advertising. We focus on maximizing your organic reach and engagement first." },
-    { question: "Which platforms do you optimize?", answer: "We optimize for Instagram, Facebook, LinkedIn, Twitter/X, YouTube, and Pinterest — with strategies tailored specifically to each platform's algorithm and audience behavior." },
-    { question: "How long does it take to see results?", answer: "Profile optimizations show immediate improvements. Content strategy results typically become significant within 60-90 days as the algorithm recognizes and rewards consistent, optimized posting." },
-    { question: "Do you create the content too?", answer: "We focus on strategy and optimization. We provide content calendars, caption frameworks, and creative direction. For content creation (graphics, videos), check out our Social Media Design service." },
-    { question: "How do you measure success?", answer: "We track reach, engagement rate, follower growth rate, profile visits, website clicks, and conversions — not just likes and follower count." },
-    { question: "Will this work for B2B companies?", answer: "Absolutely. We have strong experience optimizing LinkedIn and other platforms for B2B lead generation. The strategy differs from B2C, and we tailor accordingly." },
-    { question: "Do I need to be on every platform?", answer: "No. We'll identify the 2-3 platforms where your audience is most active and focus your efforts there for maximum impact." },
-    { question: "Can you help with negative reviews or brand reputation?", answer: "Yes. Our SMO strategy includes reputation management — monitoring mentions, responding to reviews, and building positive brand sentiment." },
-  ],
+  faq: getFaqs("social-media-optimisation"),
   finalCTA: {
     headline: "Partner with the Best SMO Company in Bangalore",
     description: "Get a free audit from our social media optimization services in Bangalore and discover untapped opportunities to grow reach, engagement and influence.",

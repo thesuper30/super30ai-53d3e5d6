@@ -7,13 +7,14 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/landing/Footer";
 
 
-import { ArrowRight, Bot, Target, Users, Zap, BarChart3, Search, MousePointerClick, CheckCircle2, Sparkles, Award, Megaphone, Palette, Globe } from "lucide-react";
+import { ArrowRight, Bot, Target, Users, Zap, BarChart3, Search, CheckCircle2, Sparkles, Award, Megaphone, Palette, Globe } from "lucide-react";
 
 // Lazy load all below-fold sections
 const UnifiedCTASection = lazy(() => import("@/components/landing/UnifiedCTASection").then(m => ({ default: m.UnifiedCTASection })));
 const ClientLogosSection = lazy(() => import("@/components/landing/ClientLogosSection").then(m => ({ default: m.ClientLogosSection })));
 const TestimonialSection = lazy(() => import("@/components/landing/TestimonialSection").then(m => ({ default: m.TestimonialSection })));
 const BlogSection = lazy(() => import("@/components/landing/BlogSection").then(m => ({ default: m.BlogSection })));
+const FAQSection = lazy(() => import("@/components/landing/FAQSection").then(m => ({ default: m.FAQSection })));
 const WhoIsThisForSection = lazy(() => import("@/components/landing/WhoIsThisForSection").then(m => ({ default: m.WhoIsThisForSection })));
 const HeroDashboardPreview = lazy(() => import("@/components/home/HeroDashboardPreview").then(m => ({ default: m.HeroDashboardPreview })));
 const ServicesCarousel = lazy(() => import("@/components/home/ServicesCarousel").then(m => ({ default: m.ServicesCarousel })));
@@ -80,15 +81,15 @@ const Home = () => {
       <title>Digital Marketing Agency & AI Growth Company | TheSuper30</title>
       <meta name="description" content="A leading AI-driven digital marketing agency helping businesses achieve real ROI and scalable growth with proven strategies. Book a free consultation now." />
       <meta name="keywords" content="Digital Marketing Agency, Digital Marketing Company, AI digital marketing agency, AI Digital Marketing Company, AI based digital marketing agency" />
-      <link rel="canonical" href="https://www.thesuper30.ai/" />
+      <link rel="canonical" href="https://super30ai.lovable.app/" />
       <meta property="og:title" content="Stop Guessing. Start Growing With AI-Powered Marketing." />
       <meta property="og:description" content="From strategy to execution, Super 30 delivers proven 10x revenue growth. Book your free call now!" />
       <meta property="og:type" content="website" />
-      <meta property="og:url" content="https://www.thesuper30.ai/" />
+      <meta property="og:url" content="https://super30ai.lovable.app/" />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content="Stop Guessing. Start Growing With AI-Powered Marketing." />
       <meta name="twitter:description" content="From strategy to execution, Super 30 delivers proven 10x revenue growth. Book your free call now!" />
-      <meta name="twitter:url" content="https://www.thesuper30.ai/" />
+      <meta name="twitter:url" content="https://super30ai.lovable.app/" />
       <meta name="robots" content="index, follow" />
       <script type="application/ld+json">
         {JSON.stringify({
@@ -126,15 +127,12 @@ const Home = () => {
 
               <h1 className="font-bold text-foreground">
                 <span className="block text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-brand leading-[1.3] pb-1">
-                  The Digital Marketing Agency
-                </span>
-                <span className="block text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl leading-[1.3]">
-                  That Turns Your Clicks into Revenue
+                  The AI Digital Marketing Agency
                 </span>
               </h1>
 
               <p className="text-base md:text-lg lg:text-xl text-muted-foreground leading-relaxed max-w-xl mx-auto lg:mx-0">
-                Most brands struggle with traffic that does not convert. As a result-oriented <span className="text-foreground font-semibold">digital marketing company</span>, we build smart, AI-powered plans to help you find more customers and grow your sales faster through data.
+                There are many brands out there that have trouble with traffic that doesn't convert. We are a performance driven <span className="text-foreground font-semibold">digital marketing company</span> and provide AI driven strategies to bring in qualified customers and accelerate revenue growth with insights.
               </p>
 
               {/* Platform Logos - simplified inline SVGs kept */}
@@ -167,12 +165,6 @@ const Home = () => {
                     <ArrowRight className="w-3.5 h-3.5 md:w-4 md:h-4 ml-2" />
                   </Button>
                 </Link>
-                <Link to="/lead-generation-agency-bangalore">
-                  <Button size="lg" variant="outline" className="border-2 bg-background/95 hover:bg-muted/50 hover:-translate-y-0.5 transition-[transform,background-color] duration-200 w-full sm:w-auto text-sm md:text-base px-6 md:px-8">
-                    <MousePointerClick className="w-4 h-4 md:w-5 md:h-5 mr-2" />
-                    Performance Marketing
-                  </Button>
-                </Link>
               </div>
             </div>
 
@@ -198,10 +190,10 @@ const Home = () => {
                 Why Us
               </span>
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
-                Why We Are the Preferred AI Digital Marketing Agency for Rapid Growth
+                Why We Are the Preferred AI Digital Marketing Company for Rapid Growth
               </h2>
               <p className="text-lg text-muted-foreground">
-                We combine human creativity with machine learning. This allows our AI based digital marketing agency to predict market trends and optimize your brand performance in real time for maximum profit.
+                We combine human creativity with machine learning. This facilitates our digital marketing company in predicting market trends and optimizing your brand to get more profitable in real-time with our AI tools.
               </p>
             </div>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
@@ -222,9 +214,10 @@ const Home = () => {
         <WhoIsThisForSection />
         <TestimonialSection />
         <BlogSection />
+        <FAQSection slug="home" />
         <UnifiedCTASection
-          headline="Partner with the Best Digital Marketing Agency Today"
-          subtext="Stop the guesswork and start growing. Contact our digital marketing experts for a free brand audit and see how our custom AI roadmap can help you lead your industry."
+          headline="Work with a Growth-Oriented AI Digital Marketing Agency Today"
+          subtext="We are a seasoned AI-Powered digital marketing company with a legacy of building advanced strategies that focus on growth that drives traffic, conversions, and revenues. We offer a free brand audit with our team of 30 experts to build a plan that helps you focus on your growth."
           primaryCTA={{ label: "Get My Free Brand Audit", href: "/seo-company-bangalore" }}
           secondaryCTA={{ label: "Explore Our Services", href: "/digital-marketing-agency-bangalore" }}
         />

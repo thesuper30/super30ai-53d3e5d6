@@ -1,12 +1,13 @@
 import { ServicePageTemplate, ServicePageConfig } from "@/components/service/ServicePageTemplate";
+import { getFaqs } from "@/data/faqs";
 import { Target, TrendingUp, BarChart3, DollarSign, Eye, Zap, Users, Shield, Search, MousePointerClick, LineChart, Megaphone, Bot, Layers, RefreshCw, Clock } from "lucide-react";
 
 const config: ServicePageConfig = {
   seo: {
     title: "Google Ads Agency in Bangalore | PPC Service | Upto 10X ROAS",
     description: "High intent leads with optimized budget. PPC company in Bangalore running targeted PPC campaigns with quality traffic, high conversions & better ROAS",
-    keywords: "google ads agency in bangalore, ppc services in bangalore, ppc company in bangalore, ppc agency in bangalore, google adwords management agency in bangalore",
-    canonical: "https://www.thesuper30.ai/google-ads-agency-bangalore",
+    keywords: "AI google ads agency in bangalore, AI ppc services in bangalore, AI ppc company in bangalore, AI ppc agency in bangalore, google ads agency in bangalore, ppc services in bangalore, ppc company in bangalore, ppc agency in bangalore, google adwords management agency in bangalore",
+    canonical: "https://super30ai.lovable.app/google-ads-agency-bangalore",
     serviceType: "Google Ads Management",
     ogTitle: "Every Rupee You Spend on Google Ads Should Work Harder.",
     ogDescription: "Targeted Google Ads & PPC that lower your cost per click and bring leads that convert. Let's talk!",
@@ -17,12 +18,12 @@ const config: ServicePageConfig = {
     badgeIcon: Target,
     badgeText: "Google Ads Agency in Bangalore",
     headlineLine1: "Google Ads Agency in Bangalore",
-    headlineLine2: "PPC Services Up to 10X ROAS",
-    description: <>As a leading <span className="text-foreground font-semibold">PPC company in Bangalore</span>, we run targeted Google Ads and PPC campaigns that lower cost per click and bring leads that convert. Every rupee tracked, every click optimized.</>,
+    headlineLine2: "Achieving 10X ROAS",
+    description: <>As a trusted <span className="text-foreground font-semibold">PPC company in Bangalore</span>, we manage targeted Google Ads and PPC campaigns that reduce cost per click and generate leads that convert. Every budget monitored, every campaign refined.</>,
     trustSignals: [
-      { icon: TrendingUp, text: "Avg. 4.2x ROAS Across Clients" },
-      { icon: BarChart3, text: "Real-Time Dashboard Access" },
-      { icon: DollarSign, text: "Transparent Spend Reports" },
+      { icon: TrendingUp, text: "Avg. 4.2x ROAS Across Campaigns" },
+      { icon: BarChart3, text: "Live Campaign Dashboard Access" },
+      { icon: DollarSign, text: "Transparent Budget Reporting" },
       { icon: Shield, text: "No Long-Term Lock-ins" },
     ],
     credentials: ["Google Partner Agency", "₹2Cr+ Ad Spend Managed", "300+ Campaigns Optimized"],
@@ -97,16 +98,7 @@ const config: ServicePageConfig = {
       "You're looking for the cheapest agency, not the best results",
     ],
   },
-  faq: [
-    { question: "How much should I spend on Google Ads?", answer: "We recommend a minimum of ₹30,000/month for meaningful results. The ideal budget depends on your industry, competition, and goals. We'll help you determine the right amount during our free audit." },
-    { question: "How quickly will I see results?", answer: "Most clients start seeing qualified leads within the first 1-2 weeks. However, campaigns typically reach peak performance after 60-90 days of optimization." },
-    { question: "Do you charge a percentage of ad spend?", answer: "We charge a flat management fee, not a percentage. This means we have no incentive to inflate your ad spend — only to maximize your results." },
-    { question: "Will I have access to my Google Ads account?", answer: "Absolutely. You own your account, your data, and your campaigns. We work in your account with full transparency." },
-    { question: "What if my campaigns aren't performing?", answer: "We continuously optimize based on data. If something isn't working, we pivot quickly. Plus, there are no long-term contracts — you stay because of results." },
-    { question: "Do you create the ad copy and landing pages?", answer: "Yes. Our team writes high-converting ad copy and builds custom landing pages designed to maximize your conversion rate." },
-    { question: "Can you manage campaigns for e-commerce stores?", answer: "Yes. We specialize in Google Shopping Ads, Performance Max, and search campaigns for e-commerce brands of all sizes." },
-    { question: "How do you report on performance?", answer: "You get a real-time dashboard plus weekly written reports with actionable insights — not just vanity metrics." },
-  ],
+  faq: getFaqs("google-ads"),
   finalCTA: {
     headline: "Hire the Top Google Ads Agency in Bangalore",
     description: "Get a free PPC audit from our Google AdWords management agency in Bangalore and discover how much revenue you're leaving on the table.",

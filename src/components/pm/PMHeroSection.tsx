@@ -16,10 +16,10 @@ interface PMHeroSectionProps {
 }
 
 const trustSignals = [
-  { icon: Target, text: "ROI-Focused Campaigns" },
-  { icon: Globe, text: "Multi-Platform Expertise" },
-  { icon: Bot, text: "AI-Powered Optimization" },
-  { icon: Handshake, text: "No long-term lock-ins" },
+  { icon: Target, text: "Revenue focused campaign management" },
+  { icon: Globe, text: "Cross platform advertising expertise" },
+  { icon: Bot, text: "AI powered campaign optimization" },
+  { icon: Handshake, text: "Flexible performance partnerships" },
 ];
 
 const expertCredentials = [
@@ -55,11 +55,10 @@ export const PMHeroSection = ({ onSubmit, loading }: PMHeroSectionProps) => {
             {/* H1 and Description */}
             <div>
               <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-foreground leading-tight mb-4 md:mb-5">
-                <span className="text-brand">Lead Generation Agency</span> in Bangalore — B2B Leads That Convert
+                <span className="text-brand">Lead Generation Agency</span> in Bangalore for High Intent B2B Growth
               </h1>
               <p className="text-base md:text-lg text-muted-foreground leading-relaxed max-w-xl">
-                As a leading performance marketing agency in Bangalore, we deliver AI powered ads and performance marketing services built around your{" "}
-                <span className="text-foreground font-semibold">business goals and ROI</span>.
+                As a leading <span className="text-foreground font-semibold">performance marketing agency in Bangalore</span>, we deliver AI powered advertising and lead generation strategies designed around measurable business growth for sustainable revenue performance.
               </p>
             </div>
 
@@ -87,7 +86,7 @@ export const PMHeroSection = ({ onSubmit, loading }: PMHeroSectionProps) => {
                 className="px-6 py-3 h-auto rounded-xl group"
               >
                 <MessageCircle className="w-5 h-5 mr-2" />
-                Enquire Now
+                Connect With Our Team
                 <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
               </Button>
             </div>

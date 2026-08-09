@@ -46,10 +46,10 @@ export const DMIndustriesSection = () => (
           Industry Expertise
         </span>
         <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground leading-[1.1] mb-5">
-          Marketing for <span className="text-brand">every industry</span>
+          Marketing Strategies for <span className="text-brand">Every Industry</span>
         </h2>
         <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-          Vertical-specific strategies proven across 18+ industries. We speak your market's language.
+          Industry trusted digital marketing strategies across 18+ business sectors. Each campaign, platform, and customer journey is aligned to your market's search, engagement, and conversion patterns.
         </p>
       </div>
     </div>

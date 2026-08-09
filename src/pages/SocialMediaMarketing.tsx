@@ -1,12 +1,13 @@
 import { ServicePageTemplate, ServicePageConfig } from "@/components/service/ServicePageTemplate";
+import { getFaqs } from "@/data/faqs";
 import { Megaphone, TrendingUp, Users, Target, DollarSign, Instagram, Facebook, Linkedin, Youtube, BarChart3, Zap, Eye, Sparkles, Rocket, MessageCircle, Calendar, Shield, Globe, Clock, Heart } from "lucide-react";
 
 const config: ServicePageConfig = {
   seo: {
     title: "Social Media Marketing Agency in Bangalore | SMM Services",
     description: "Grow your brand with a social media marketing company in Bangalore. We run Meta Ads, Instagram & LinkedIn campaigns that drive real engagement & ROI.",
-    keywords: "social media marketing company bangalore, social media marketing agency bangalore, social media marketing services bangalore, facebook marketing agency bangalore, social media agency bangalore, social media advertising company in bangalore, linkedin marketing in bangalore",
-    canonical: "https://www.thesuper30.ai/social-media-marketing-agency-bangalore",
+    keywords: "AI social media marketing company bangalore, AI social media marketing agency bangalore, AI social media marketing services bangalore, social media marketing company bangalore, social media marketing agency bangalore, social media marketing services bangalore, social media agency bangalore, social media advertising company in bangalore, facebook marketing agency bangalore, linkedin marketing in bangalore",
+    canonical: "https://super30ai.lovable.app/social-media-marketing-agency-bangalore",
     serviceType: "Social Media Marketing",
     ogTitle: "Likes Don't Pay Bills. But Our Social Media Strategy Does.",
     ogDescription: "Meta Ads to LinkedIn. We turn followers into real customers. Let's make social media work for you!",
@@ -16,14 +17,14 @@ const config: ServicePageConfig = {
   hero: {
     badgeIcon: Megaphone,
     badgeText: "Social Media Marketing Company in Bangalore",
-    headlineLine1: "Social Media Marketing",
-    headlineLine2: "Agency in Bangalore",
-    description: <>End-to-end <span className="text-foreground font-semibold">social media marketing services in Bangalore</span> across Instagram, Facebook, LinkedIn & YouTube — Meta Ads and LinkedIn campaigns that drive real engagement, leads and revenue, not vanity metrics.</>,
+    headlineLine1: "Social Media Marketing Agency in Bangalore",
+    headlineLine2: "To Scale Your Digital Presence",
+    description: <>End-to-end <span className="text-foreground font-semibold">social media marketing services in Bangalore</span> across Instagram, Facebook, LinkedIn, and YouTube. Meta Ads and LinkedIn campaigns focused on real engagement, qualified leads, and measurable revenue growth.</>,
     trustSignals: [
-      { icon: TrendingUp, text: "Avg. 4x Engagement Lift" },
-      { icon: Users, text: "Organic + Paid Strategies" },
-      { icon: Target, text: "ROI-Focused Campaigns" },
-      { icon: BarChart3, text: "Transparent Monthly Reporting" },
+      { icon: TrendingUp, text: "Average 4x Engagement Growth" },
+      { icon: Users, text: "Organic and Paid Campaigns" },
+      { icon: Target, text: "ROI Driven Campaign Strategy" },
+      { icon: BarChart3, text: "Transparent Campaign Reporting" },
     ],
     credentials: ["300+ Brands Managed", "Multi-Platform Expertise", "ROI-Focused Strategy"],
     formTitle: "Get Your Free Social Media Audit",
@@ -97,16 +98,7 @@ const config: ServicePageConfig = {
       "You want the cheapest option in the market",
     ],
   },
-  faq: [
-    { question: "Which platforms do you manage?", answer: "We manage Instagram, Facebook, LinkedIn, YouTube, Twitter/X and Pinterest — with platform-specific strategies for each. Most clients focus on 2-3 platforms where their audience actually is." },
-    { question: "How is this different from SMO?", answer: "SMO focuses on organic optimization. Social Media Marketing covers the full funnel — strategy, content, paid ads, influencers and community management end-to-end." },
-    { question: "What does it cost?", answer: "Packages typically start from ₹50,000+/month depending on platforms, content volume and ad spend management. We share a clear, fixed-scope quote after a discovery call." },
-    { question: "Do you create the content too?", answer: "Yes. Our in-house team produces graphics, carousels, reels, shorts and ad creatives. You approve everything before it goes live." },
-    { question: "How soon will I see results?", answer: "Engagement lift in the first 30-45 days. Meaningful follower growth and lead flow typically within 60-90 days as the algorithm rewards consistency." },
-    { question: "Do you handle paid ads as well?", answer: "Absolutely. We run Meta, LinkedIn and YouTube ads with full targeting, creative testing, conversion tracking and weekly optimization." },
-    { question: "Will I own the content and accounts?", answer: "100%. You own the accounts, the content library, and all creative assets. Zero lock-in." },
-    { question: "Can you work with our internal team?", answer: "Yes. We collaborate with in-house marketing, design and product teams via Slack, Notion or your tool of choice." },
-  ],
+  faq: getFaqs("social-media-marketing"),
   finalCTA: {
     headline: "Ready to turn social into a revenue channel?",
     description: "Get a free social media audit and a custom 90-day growth roadmap for your brand.",

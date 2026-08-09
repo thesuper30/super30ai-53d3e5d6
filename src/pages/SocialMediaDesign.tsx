@@ -34,18 +34,18 @@ const SocialMediaDesign = () => {
   return (
     <>
       <Helmet>
-        <title>Social Media Post Design Agency in Bangalore | Creative Posts</title>
+        <title>Creative Social Media Post Design Agency in Bangalore</title>
         <meta name="description" content="Make every post count. Our social media design company in Bangalore creates scroll stopping creatives & post designs that boost engagement" />
         <meta name="keywords" content="social media design agency in bangalore, social media design company in bangalore, social media design services in bangalore, social media creative designing agency in bangalore, social media graphic design company in bangalore" />
-        <link rel="canonical" href="https://www.thesuper30.ai/social-media-design-agency-bangalore" />
+        <link rel="canonical" href="https://super30ai.lovable.app/social-media-design-agency-bangalore" />
         <meta property="og:title" content="Your Social Media Posts Should Stop the Scroll. Do They?" />
         <meta property="og:description" content="Scroll-stopping social creatives and post designs that make your brand impossible to ignore. Let's create!" />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://www.thesuper30.ai/social-media-design-agency-bangalore" />
+        <meta property="og:url" content="https://super30ai.lovable.app/social-media-design-agency-bangalore" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Your Social Media Posts Should Stop the Scroll. Do They?" />
         <meta name="twitter:description" content="Scroll-stopping social creatives and post designs that make your brand impossible to ignore. Let's create!" />
-        <meta name="twitter:url" content="https://www.thesuper30.ai/social-media-design-agency-bangalore" />
+        <meta name="twitter:url" content="https://super30ai.lovable.app/social-media-design-agency-bangalore" />
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
@@ -69,23 +69,23 @@ const SocialMediaDesign = () => {
             headline={
               <>
                 <span className="block text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-brand leading-[1.25] pb-1">
-                  Social Media Design Agency
+                  Social Media Design Agency in Bangalore
                 </span>
                 <span className="block text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl leading-[1.25]">
-                  in Bangalore
+                  for Scroll Stopping Visual Content
                 </span>
               </>
             }
             description={
               <>
-                Bangalore's leading <span className="text-foreground font-semibold">social media design company</span> creating scroll-stopping creatives, post designs and reels for Instagram, Facebook, LinkedIn & more — designed to engage and convert.
+                Bangalore's trusted <span className="text-foreground font-semibold">social media design company</span> producing attention grabbing visuals, reels, and branded content for Instagram, Facebook, LinkedIn, and growing digital platforms.
               </>
             }
             trustSignals={[
-              { icon: Instagram, text: "Instagram, Facebook & LinkedIn" },
-              { icon: Layers, text: "Carousels, Stories & Reels" },
-              { icon: Sparkles, text: "On-Brand Creative Design" },
-              { icon: Zap, text: "Quick Turnaround" },
+              { icon: Instagram, text: "Instagram, Facebook, and LinkedIn" },
+              { icon: Layers, text: "Carousels, Stories, and Reels" },
+              { icon: Sparkles, text: "Brand Focused Creative Design" },
+              { icon: Zap, text: "Fast Project Delivery" },
             ]}
             credentials={["500+ Brands Designed", "All Platforms Covered", "Quick Turnaround"]}
             onSubmit={handleFormSubmit}

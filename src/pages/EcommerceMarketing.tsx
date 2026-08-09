@@ -1,12 +1,13 @@
 import { ServicePageTemplate, ServicePageConfig } from "@/components/service/ServicePageTemplate";
+import { getFaqs } from "@/data/faqs";
 import { ShoppingBag, TrendingUp, Target, DollarSign, BarChart3, Zap, Eye, Sparkles, Rocket, Package, Truck, Globe, Clock, Heart, Search, ShoppingCart, Megaphone, Layers, RefreshCw, Users } from "lucide-react";
 
 const config: ServicePageConfig = {
   seo: {
     title: "D2C & Ecommerce Marketing Agency in Bangalore",
     description: "Ecommerce marketing agency in Bangalore offering D2C marketing services, performance strategies, and scalable solutions for online brands. Book a free call",
-    keywords: "ecommerce marketing services in bangalore, ecommerce marketing agency in bangalore, d2c marketing services in bangalore, d2c ecommerce agency in bangalore, d2c growth partner in bangalore",
-    canonical: "https://www.thesuper30.ai/ecommerce-marketing-agency-bangalore",
+    keywords: "AI ecommerce marketing services in bangalore, AI ecommerce marketing agency in bangalore, Ecommerce marketing services in bangalore, Ecommerce marketing agency in bangalore, d2c ecommerce agency in bangalore, d2c marketing services in bangalore, d2c growth partner in bangalore",
+    canonical: "https://super30ai.lovable.app/ecommerce-marketing-agency-bangalore",
     serviceType: "Ecommerce & D2C Marketing",
     ogTitle: "Ecommerce Marketing Agency in Bangalore for D2C Brands",
     ogDescription: "D2C ecommerce agency in Bangalore offering marketing strategies for online brands.",
@@ -97,16 +98,7 @@ const config: ServicePageConfig = {
       "You don't have a real product-market fit yet",
     ],
   },
-  faq: [
-    { question: "What ecommerce platforms do you work with?", answer: "Shopify, WooCommerce, Magento, BigCommerce and custom stacks. Most of our D2C clients are on Shopify or Shopify Plus." },
-    { question: "Do you only do ads or full ecommerce marketing?", answer: "We're a full-stack D2C ecommerce agency in Bangalore — performance ads, SEO, CRO, email/SMS retention, UGC creative and marketplaces all under one roof." },
-    { question: "What kind of brands do you work with?", answer: "Direct-to-consumer brands across beauty, F&B, apparel, wellness, home and lifestyle — typically doing ₹10L–₹5Cr/month in revenue and looking to scale profitably." },
-    { question: "What does it cost?", answer: "D2C ecommerce retainers typically start at ₹75,000+/month plus ad spend, depending on channels and scope. We share a clear, fixed-scope quote after a discovery call." },
-    { question: "How fast will I see ROAS improve?", answer: "Most D2C brands see meaningful ROAS lift within 60-90 days as we scale winning creatives, optimize CRO and turn on retention flows." },
-    { question: "Do you handle creative production too?", answer: "Yes. Our in-house team produces UGC, static and video ad creatives specifically built for Meta, Google and YouTube D2C performance." },
-    { question: "Will I own my ad accounts and data?", answer: "100%. You own your Meta, Google, Shopify, Klaviyo and analytics accounts. Zero lock-in." },
-    { question: "Can you also manage Amazon and Flipkart?", answer: "Absolutely. We run coordinated DTC + marketplace growth so your brand grows on Amazon, Flipkart, Myntra and your own store together." },
-  ],
+  faq: getFaqs("ecommerce-marketing"),
   finalCTA: {
     headline: "Hire the Top Ecommerce Marketing Agency in Bangalore",
     description: "Get a free audit from our D2C ecommerce agency in Bangalore and a custom 90-day roadmap built to scale your store profitably.",

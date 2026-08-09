@@ -1,4 +1,5 @@
 import { ServicePageTemplate, ServicePageConfig } from "@/components/service/ServicePageTemplate";
+import { getFaqs } from "@/data/faqs";
 import { Sparkles, MessageSquare, Image, ShoppingCart, Target, BarChart3, Zap, Shield, Users, Globe, Bot, Eye, Award, TrendingUp, Layers, Send } from "lucide-react";
 
 const config: ServicePageConfig = {
@@ -6,7 +7,7 @@ const config: ServicePageConfig = {
     title: "RCS Messaging Provider in Bangalore | Business Messaging",
     description: "Go beyond plain SMS. Our RCS messaging services in Bangalore deliver rich business messages with images and buttons that boost engagement. Let's Connect!",
     keywords: "RCS Messaging Provider In Bangalore, RCS messaging services in bangalore, RCS messaging solutions in bangalore, RCS messaging platform provider in bangalore, RCS messaging agency in bangalore",
-    canonical: "https://www.thesuper30.ai/rcs-messaging-provider-bangalore",
+    canonical: "https://super30ai.lovable.app/rcs-messaging-provider-bangalore",
     serviceType: "RCS Messaging Services",
     ogTitle: "Plain SMS Is Old News. RCS Messaging Is What Works Now.",
     ogDescription: "Rich messages with images and buttons that drive far better engagement than plain SMS. Let's connect!",
@@ -97,16 +98,7 @@ const config: ServicePageConfig = {
       "You need 100% reach — RCS is still growing in coverage",
     ],
   },
-  faq: [
-    { question: "What is RCS messaging?", answer: "RCS (Rich Communication Services) is the next evolution of SMS. It lets businesses send messages with images, videos, carousels, interactive buttons, and verified branding — all within the native messaging app." },
-    { question: "Do customers need to download an app?", answer: "No. RCS works in the native messaging app on Android devices. No app download or registration required." },
-    { question: "What happens if a phone doesn't support RCS?", answer: "Our platform automatically falls back to SMS for devices that don't support RCS, ensuring your message always reaches the customer." },
-    { question: "Is RCS available in India?", answer: "Yes. RCS is supported on most Android devices in India through Google Messages. Coverage is growing rapidly with telecom operator adoption." },
-    { question: "How much does RCS cost compared to SMS?", answer: "RCS typically costs 2-3x per message compared to SMS, but delivers 3-5x higher engagement rates — making the ROI significantly better." },
-    { question: "Can I send RCS to iPhone users?", answer: "Apple has started rolling out RCS support. In the interim, our platform automatically falls back to SMS for non-supported devices." },
-    { question: "What kind of content can I send?", answer: "Images, videos, GIFs, product carousels, location maps, interactive buttons, suggested replies, and rich text — all within the message." },
-    { question: "How do I get verified branding?", answer: "We handle the business verification process with Google/carriers to get your business name, logo, and verified badge on every RCS message." },
-  ],
+  faq: getFaqs("rcs"),
   finalCTA: {
     headline: "Hire Bangalore's Trusted RCS Messaging Provider",
     description: "Get a free RCS messaging demo and see how rich, branded business messages can transform your customer engagement.",
