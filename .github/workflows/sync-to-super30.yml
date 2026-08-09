@@ -15,6 +15,18 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Check SSH secret
+        env:
+          SSH_KEY: ${{ secrets.SUPER30_DEPLOY_KEY }}
+        run: |
+          if [ -z "$SSH_KEY" ]; then
+            echo "ERROR: SUPER30_DEPLOY_KEY is EMPTY"
+            exit 1
+          fi
+
+          echo "SUCCESS: SUPER30_DEPLOY_KEY exists"
+          echo "Key length: ${#SSH_KEY} characters"
+
       - name: Start SSH agent
         uses: webfactory/ssh-agent@v0.9.1
         with:
