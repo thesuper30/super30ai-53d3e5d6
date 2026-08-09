@@ -22,7 +22,7 @@ jobs:
 
       - name: Add Super30 repository
         run: |
-          git remote add destination https://x-access-token:${{ secrets.SUPER30_PAT }}@github.com/thesuper30/super30ai.git
+          git remote add destination https://x-access-token:${{ secrets.SUPER30_PAT }}@github.com/thesuper30/super30ai-53d3e5d6.git
 
       - name: Fetch Super30 repository
         run: |
