@@ -1,6 +1,7 @@
 import { Navbar } from "@/components/Navbar";
 import { ServiceHeroSection } from "@/components/service/ServiceHeroSection";
 import { ClientLogosSection } from "@/components/landing/ClientLogosSection";
+import { SEOProofSection } from "@/components/landing/SEOProofSection";
 import { 
   Search, Globe, Bot, BarChart3, TrendingUp,
   Building2, ShoppingCart, Briefcase, GraduationCap, 
@@ -112,7 +113,8 @@ const AiSeo = () => {
             credentials={[
               "Google Certified SEO Experts",
               "10+ Years Experience",
-              "500+ Keywords Ranked #1",
+              "50k+ Keywords Ranked",
+              "1 Lakh+ Leads Generated",
             ]}
             onSubmit={handleFormSubmit}
             loading={loading}
@@ -126,6 +128,7 @@ const AiSeo = () => {
         </div>
 
         <ClientLogosSection />
+        <SEOProofSection />
 
         <Suspense fallback={null}>
           <ProblemSection />
