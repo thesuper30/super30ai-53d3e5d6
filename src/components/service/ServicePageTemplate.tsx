@@ -62,6 +62,8 @@ export interface ServicePageConfig {
   comparison: {
     traditional: string[];
     super30: string[];
+    traditionalTitle?: string;
+    super30Title?: string;
   };
   benefits: {
     icon: LucideIcon;
@@ -76,12 +78,15 @@ export interface ServicePageConfig {
   whoIsThisFor: {
     forYou: string[];
     notForYou: string[];
+    forYouTitle?: string;
+    notForYouTitle?: string;
   };
   faq: {
     question: string;
     answer: string;
   }[];
   finalCTA: {
+    eyebrow?: string;
     headline: string;
     description: string;
     buttonText: string;
@@ -201,7 +206,7 @@ const ComparisonSection = ({ comparison, heading }: { comparison: ServicePageCon
         </div>
         <div className={`grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           <div className="bg-background border border-border/50 rounded-2xl p-6">
-            <h3 className="font-bold text-foreground mb-4 text-lg">Traditional Agency</h3>
+            <h3 className="font-bold text-foreground mb-4 text-lg">{comparison.traditionalTitle ?? "Traditional Agency"}</h3>
             <ul className="space-y-3">
               {comparison.traditional.map((item, i) => (
                 <li key={i} className="flex items-start gap-3 text-sm text-muted-foreground">
@@ -212,7 +217,7 @@ const ComparisonSection = ({ comparison, heading }: { comparison: ServicePageCon
             </ul>
           </div>
           <div className="bg-brand/5 border-2 border-brand/20 rounded-2xl p-6">
-            <h3 className="font-bold text-brand mb-4 text-lg">The Super 30</h3>
+            <h3 className="font-bold text-brand mb-4 text-lg">{comparison.super30Title ?? "The Super 30"}</h3>
             <ul className="space-y-3">
               {comparison.super30.map((item, i) => (
                 <li key={i} className="flex items-start gap-3 text-sm text-foreground">
@@ -314,7 +319,7 @@ const WhoIsThisForSection = ({ data, heading }: { data: ServicePageConfig["whoIs
         </div>
         <div className={`grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           <div className="bg-brand/5 border border-brand/20 rounded-2xl p-6">
-            <h3 className="font-bold text-brand mb-4 text-lg">✅ Perfect For You If…</h3>
+            <h3 className="font-bold text-brand mb-4 text-lg">✅ {data.forYouTitle ?? "Perfect For You If…"}</h3>
             <ul className="space-y-3">
               {data.forYou.map((item, i) => (
                 <li key={i} className="flex items-start gap-3 text-sm text-foreground">
@@ -325,7 +330,7 @@ const WhoIsThisForSection = ({ data, heading }: { data: ServicePageConfig["whoIs
             </ul>
           </div>
           <div className="bg-background border border-border/50 rounded-2xl p-6">
-            <h3 className="font-bold text-foreground mb-4 text-lg">❌ Not For You If…</h3>
+            <h3 className="font-bold text-foreground mb-4 text-lg">❌ {data.notForYouTitle ?? "Not For You If…"}</h3>
             <ul className="space-y-3">
               {data.notForYou.map((item, i) => (
                 <li key={i} className="flex items-start gap-3 text-sm text-muted-foreground">
@@ -379,6 +384,9 @@ const FAQSection = ({ faq }: { faq: ServicePageConfig["faq"] }) => {
 const FinalCTASection = ({ data }: { data: ServicePageConfig["finalCTA"] }) => (
   <section className="py-12 md:py-20 bg-[#020617]">
     <div className="container mx-auto px-4 text-center">
+      {data.eyebrow && (
+        <span className="inline-block text-xs font-semibold tracking-widest uppercase text-brand mb-3">{data.eyebrow}</span>
+      )}
       <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4">{data.headline}</h2>
       <p className="text-white/70 text-base md:text-lg max-w-2xl mx-auto mb-8">{data.description}</p>
       <Link
