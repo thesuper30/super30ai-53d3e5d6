@@ -120,6 +120,8 @@ const parsePageMetadata = (source, routePath) => {
   };
 };
 
+const OG_IMAGE = "https://www.thesuper30.ai/og-image.jpg";
+
 const stripSeoTags = (html) =>
   html
     .replace(/\s*<title>[\s\S]*?<\/title>/gi, "")
@@ -134,6 +136,8 @@ const stripSeoTags = (html) =>
     .replace(/\s*<meta[^>]+property="og:description"[^>]*>/gi, "")
     .replace(/\s*<meta[^>]+property="og:type"[^>]*>/gi, "")
     .replace(/\s*<meta[^>]+property="og:url"[^>]*>/gi, "")
+    .replace(/\s*<meta[^>]+property="og:image[^"]*"[^>]*>/gi, "")
+    .replace(/\s*<meta[^>]+name="twitter:image"[^>]*>/gi, "")
     .replace(/\s*<link[^>]+rel="canonical"[^>]*>/gi, "");
 
 const injectMetadata = (html, metadata) => {
@@ -148,9 +152,14 @@ const injectMetadata = (html, metadata) => {
     `<meta property="og:description" content="${escapeHtml(metadata.ogDescription)}" />`,
     `<meta property="og:type" content="${escapeHtml(metadata.ogType)}" />`,
     `<meta property="og:url" content="${escapeHtml(metadata.ogUrl)}" />`,
+    `<meta property="og:image" content="${OG_IMAGE}" />`,
+    `<meta property="og:image:width" content="1200" />`,
+    `<meta property="og:image:height" content="630" />`,
+    `<meta property="og:image:alt" content="The Super 30 — AI Digital Marketing Agency in Bangalore" />`,
     `<meta name="twitter:card" content="${escapeHtml(metadata.twitterCard)}" />`,
     `<meta name="twitter:title" content="${escapeHtml(metadata.twitterTitle)}" />`,
     `<meta name="twitter:description" content="${escapeHtml(metadata.twitterDescription)}" />`,
+    `<meta name="twitter:image" content="${OG_IMAGE}" />`,
     `<meta name="twitter:url" content="${escapeHtml(metadata.ogUrl)}" />`,
   ]
     .filter(Boolean)
@@ -445,18 +454,22 @@ const main = async () => {
     if (!route) return [];
 
     const url = metadata.canonical;
-    const graph = [
-      {
-        "@context": "https://schema.org",
-        "@type": "BreadcrumbList",
-        itemListElement: [
-          { "@type": "ListItem", position: 1, name: "Home", item: `${siteOrigin}/` },
-          { "@type": "ListItem", position: 2, name: route.name, item: url },
-        ],
-      },
-    ];
+    const graph = route.faqOnly
+      ? []
+      : [
+          {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: "Home", item: `${siteOrigin}/` },
+              { "@type": "ListItem", position: 2, name: route.name, item: url },
+            ],
+          },
+        ];
 
-    if (route.type === "Service") {
+    if (route.faqOnly) {
+      // page component already hardcodes its own page-level schema
+    } else if (route.type === "Service") {
       graph.push({
         "@context": "https://schema.org",
         "@type": "Service",
