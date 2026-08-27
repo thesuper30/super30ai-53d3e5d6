@@ -8,8 +8,7 @@ import { FAQSection } from "@/components/landing/FAQSection";
 
 import { TeamSection } from "@/components/about/TeamSection";
 import { InteractiveTimeline } from "@/components/about/InteractiveTimeline";
-import { AwardsSection } from "@/components/about/AwardsSection";
-import { AnimatedStats } from "@/components/about/AnimatedStats";
+
 import { CultureSection } from "@/components/about/CultureSection";
 import { Button } from "@/components/ui/button";
 import { BentoCard, BentoIcon, BentoBadge } from "@/components/ui/bento-grid";
@@ -167,11 +166,6 @@ const About = () => {
 
         <ClientLogosSection />
 
-        {/* Animated Stats Counter */}
-        <div id="about-stats">
-          <AnimatedStats />
-        </div>
-
         {/* Mission Section */}
         <section id="about-mission" className="py-12 md:py-16 lg:py-20 bg-background">
           <div className="container mx-auto px-3 md:px-4">
@@ -232,10 +226,6 @@ const About = () => {
           <InteractiveTimeline />
         </div>
 
-        {/* Awards Section */}
-        <div id="about-awards">
-          <AwardsSection />
-        </div>
 
         {/* Culture Section */}
         <div id="about-culture">
