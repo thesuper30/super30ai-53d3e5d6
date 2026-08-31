@@ -232,12 +232,12 @@ const About = () => {
           <CultureSection />
         </div>
 
-        <div id="about-faq">
-          <FAQSection slug="internet-marketing-agency" />
+        <div id="about-cta">
+          <UnifiedCTASection variant="dark" />
         </div>
 
-        <div id="about-cta">
-          <UnifiedCTASection />
+        <div id="about-faq">
+          <FAQSection slug="internet-marketing-agency" />
         </div>
 
         <Footer />
