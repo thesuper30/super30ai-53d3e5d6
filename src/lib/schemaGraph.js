@@ -16,17 +16,6 @@ const pageId = (url) => `${url}#webpage`;
 const areaServedNodes = (org) =>
   (org.areaServed || []).map((a) => ({ "@type": a.type, name: a.name }));
 
-const ratingNode = (rating) =>
-  rating
-    ? {
-        "@type": "AggregateRating",
-        ratingValue: rating.ratingValue,
-        bestRating: rating.bestRating,
-        worstRating: rating.worstRating,
-        reviewCount: rating.reviewCount,
-      }
-    : undefined;
-
 /** LocalBusiness (ProfessionalService) node — carries NAP, geo, hours, price range, rating. */
 export const buildOrganizationNode = (org) => {
   const node = {
@@ -68,7 +57,6 @@ export const buildOrganizationNode = (org) => {
         availableLanguage: ["English", "Hindi", "Kannada"],
       },
     ],
-    aggregateRating: ratingNode(org.aggregateRating),
     sameAs: org.sameAs,
   };
   return prune(node);
@@ -187,12 +175,12 @@ export const buildRouteGraph = (path, data) => {
           "@id": `${serviceUrl}#service`,
           name: route.name,
           serviceType: route.serviceType || route.name,
+          image: `${SITE_ORIGIN}/og-image.jpg`,
           description: (seo[servicePath] || {}).description,
           url: serviceUrl,
           provider: { "@id": ORG_ID },
           areaServed: areaServedNodes(org),
           offers: serviceOffer(org, serviceUrl, route.price),
-          aggregateRating: ratingNode(org.aggregateRating),
         })
       );
     }
@@ -247,6 +235,7 @@ export const buildRouteGraph = (path, data) => {
         "@id": `${url}#service`,
         name: route.name,
         serviceType: route.serviceType || route.name,
+        image: `${SITE_ORIGIN}/og-image.jpg`,
         description: meta.description,
         url,
         mainEntityOfPage: { "@id": pageId(url) },
@@ -254,7 +243,6 @@ export const buildRouteGraph = (path, data) => {
         areaServed: areaServedNodes(org),
         audience: { "@type": "BusinessAudience", name: "Businesses in Bengaluru and across India" },
         offers: serviceOffer(org, url, route.price),
-        aggregateRating: ratingNode(org.aggregateRating),
         isRelatedTo: route.parent
           ? { "@id": `${(seo[route.parent] || {}).canonical || abs(route.parent)}#service` }
           : undefined,
