@@ -19,6 +19,7 @@ interface NavMenuItem {
   href?: string;
   items?: SubItem[];
   categories?: SubCategory[];
+  mega?: boolean;
 }
 
 const menuItems: NavMenuItem[] = [
@@ -81,6 +82,95 @@ const menuItems: NavMenuItem[] = [
       { label: "Ecommerce Website", href: "/ecommerce-website-development-company-bangalore" },
       { label: "Wordpress Website", href: "/wordpress-website-development-company-bangalore" },
       { label: "Website Maintenance Service", href: "/website-maintenance-company-bangalore" },
+    ],
+  },
+  {
+    label: "Solutions",
+    mega: true,
+    categories: [
+      {
+        label: "Education",
+        href: "/industries/education",
+        items: [
+          { label: "Pre-schools & Daycares", href: "/industries/education" },
+          { label: "K-12 Schools", href: "/industries/education" },
+          { label: "Colleges", href: "/industries/education" },
+          { label: "Universities", href: "/industries/education" },
+          { label: "Coaching Institutes", href: "/digital-marketing-for-coaching-institutes" },
+          { label: "Govt Education Programs", href: "/industries/education" },
+          { label: "EdTech Platforms", href: "/industries/education" },
+          { label: "Skilling & Vocational", href: "/industries/education" },
+        ],
+      },
+      {
+        label: "E-Commerce",
+        href: "/industries/ecommerce",
+        items: [
+          { label: "D2C Brands", href: "/industries/ecommerce" },
+          { label: "Marketplace Sellers", href: "/industries/ecommerce" },
+          { label: "Fashion & Apparel", href: "/industries/ecommerce" },
+          { label: "Electronics & Gadgets", href: "/industries/ecommerce" },
+          { label: "Grocery/Quick Commerce", href: "/industries/ecommerce" },
+          { label: "Home & Furniture", href: "/industries/ecommerce" },
+          { label: "Beauty & Personal Care", href: "/industries/ecommerce" },
+          { label: "B2B/Wholesale", href: "/industries/ecommerce" },
+        ],
+      },
+      {
+        label: "Lifestyle",
+        href: "/industries/lifestyle",
+        items: [
+          { label: "Fashion & Apparel", href: "/industries/lifestyle" },
+          { label: "Beauty & Cosmetics", href: "/industries/lifestyle" },
+          { label: "Wellness & Fitness", href: "/industries/lifestyle" },
+          { label: "Home Decor & Furniture", href: "/industries/lifestyle" },
+          { label: "F&B (Restaurants, Cafes)", href: "/industries/lifestyle" },
+          { label: "Travel & Hospitality", href: "/industries/lifestyle" },
+          { label: "Jewelry & Accessories", href: "/industries/lifestyle" },
+          { label: "Weddings & Events", href: "/industries/lifestyle" },
+        ],
+      },
+      {
+        label: "Sports",
+        href: "/industries/sports",
+        items: [
+          { label: "Sports Academies", href: "/industries/sports" },
+          { label: "Gyms & Fitness Studios", href: "/industries/sports" },
+          { label: "Sports Events/Tournaments", href: "/industries/sports" },
+          { label: "Sports Teams/Clubs", href: "/industries/sports" },
+          { label: "Equipment & Gear Brands", href: "/industries/sports" },
+          { label: "Individual Athletes", href: "/industries/sports" },
+          { label: "Sports Tech & Apps", href: "/industries/sports" },
+        ],
+      },
+      {
+        label: "Healthcare",
+        href: "/industries/healthcare",
+        items: [
+          { label: "Hospitals", href: "/industries/healthcare" },
+          { label: "Clinics & Nursing Homes", href: "/industries/healthcare" },
+          { label: "Dental Practices", href: "/industries/healthcare" },
+          { label: "Diagnostic Centers/Labs", href: "/industries/healthcare" },
+          { label: "Pharma/Pharmacy Brands", href: "/industries/healthcare" },
+          { label: "Mental Health Clinics", href: "/industries/healthcare" },
+          { label: "Fertility & IVF Centers", href: "/industries/healthcare" },
+          { label: "Telehealth Platforms", href: "/industries/healthcare" },
+          { label: "Ayurveda & Alt. Medicine", href: "/industries/healthcare" },
+        ],
+      },
+      {
+        label: "Businesses (B2B)",
+        href: "/industries/b2b",
+        items: [
+          { label: "Startups & SaaS", href: "/industries/b2b" },
+          { label: "BFSI", href: "/industries/b2b" },
+          { label: "Real Estate & Construction", href: "/industries/b2b" },
+          { label: "Manufacturing/Industrial", href: "/industries/b2b" },
+          { label: "Professional Services", href: "/industries/b2b" },
+          { label: "Logistics & Supply Chain", href: "/industries/b2b" },
+          { label: "IT & Tech Services", href: "/industries/b2b" },
+        ],
+      },
     ],
   },
   {
@@ -202,9 +292,57 @@ export const Navbar = ({ forceWhiteBg = false }: { forceWhiteBg?: boolean }) => 
 
                 {/* Desktop Dropdown */}
                 {hasDropdown(item) && openDesktop === item.label && (
-                  <div className="absolute top-full left-0 pt-2 z-50">
-                    <div className="bg-background border border-border/60 rounded-xl shadow-xl p-2 min-w-[220px] animate-in fade-in slide-in-from-top-2 duration-200">
+                  <div className={`${item.mega ? "fixed left-1/2 -translate-x-1/2 top-16 md:top-20" : "absolute top-full left-0"} pt-2 z-50`}>
+                    <div className={`bg-white border border-border/60 rounded-xl shadow-xl animate-in fade-in slide-in-from-top-2 duration-200 overflow-hidden ${item.mega ? "w-[1080px] max-w-[calc(100vw-2rem)]" : "min-w-[220px] p-2"}`}>
                       {item.categories ? (
+                        item.mega ? (
+                          <div>
+                            {/* Header bar */}
+                            <div className="flex items-center justify-between gap-6 px-6 py-3.5 bg-muted/50 border-b border-border/50">
+                              <p className="text-lg font-bold text-foreground">Solutions by Industry</p>
+                              <p className="text-sm text-muted-foreground">
+                                AI-powered growth solutions tailored to your industry
+                              </p>
+                            </div>
+                            {/* Industry columns */}
+                            <div className="grid grid-cols-6 gap-x-4 px-5 py-5 bg-white">
+                              {item.categories.map((cat) => (
+                                <div key={cat.label} className="min-w-0">
+                                  <Link
+                                    to={cat.href || "/contact-us"}
+                                    className="block text-center px-2 py-2 rounded-full bg-primary/10 text-primary text-[13px] font-semibold leading-tight hover:bg-primary/15 transition-colors"
+                                  >
+                                    {cat.label}
+                                  </Link>
+                                  <div className="pt-2.5 flex flex-col">
+                                    {cat.items.map((sub) => (
+                                      <Link
+                                        key={sub.label}
+                                        to={sub.href}
+                                        className="px-1.5 py-[5px] text-[12.5px] leading-snug text-foreground/80 hover:text-[hsl(var(--brand-orange))] transition-colors duration-150"
+                                      >
+                                        {sub.label}
+                                      </Link>
+                                    ))}
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
+                            {/* Footer strip */}
+                            <div className="flex items-center justify-between px-6 py-3 border-t border-border/60 bg-muted/30">
+                              <p className="text-xs text-muted-foreground">
+                                6 industry hubs · 45+ sub-category specializations
+                              </p>
+                              <Link
+                                to="/contact-us"
+                                className="inline-flex items-center gap-1.5 text-sm font-semibold text-[hsl(var(--brand-orange))] hover:underline"
+                              >
+                                Talk to a strategist
+                                <ArrowRight className="w-3.5 h-3.5" />
+                              </Link>
+                            </div>
+                          </div>
+                        ) : (
                         <div className="flex gap-0">
                           {item.categories.map((cat) => (
                             <div key={cat.label} className="min-w-[200px]">
@@ -223,6 +361,7 @@ export const Navbar = ({ forceWhiteBg = false }: { forceWhiteBg?: boolean }) => 
                             </div>
                           ))}
                         </div>
+                        )
                       ) : (
                         item.items?.map((sub) => (
                           <Link
