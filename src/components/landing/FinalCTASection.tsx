@@ -9,10 +9,10 @@ interface FinalCTASectionProps {
 }
 
 const benefits = [
-  "Comprehensive AI visibility analysis across ChatGPT, Perplexity, and Google AI",
-  "Competitor research supported by actionable SEO growth insights",
-  "Personalized 90-day SEO growth strategy roadmap",
-  "Direct collaboration with experienced SEO consultants",
+  "Complete AI visibility score across ChatGPT, Perplexity & Google AI",
+  "Competitor analysis with actionable insights",
+  "Custom 90-day growth roadmap",
+  "Direct access to senior SEO strategists",
 ];
 
 const guarantees = [
@@ -49,13 +49,13 @@ export const FinalCTASection = ({ onSubmit, loading, variant = "dark" }: FinalCT
             {/* Left Content */}
             <div className={`text-center lg:text-left transition-all duration-700 delay-100 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}`}>
               <h2 className={`text-3xl md:text-4xl lg:text-5xl font-bold mb-5 leading-tight ${isDark ? 'text-white' : 'text-foreground'}`}>
-                Why Brands Choose Our{" "}
+                Stop Guessing.{" "}
                 <span className="text-brand-gradient">
-                  SEO Company in Bangalore?
+                  Start Dominating.
                 </span>
               </h2>
               <p className={`text-lg mb-8 leading-relaxed ${isDark ? 'text-white/70' : 'text-muted-foreground'}`}>
-                Transparency is our core value. Our SEO agency in Bangalore combines data backed execution, advanced AI visibility insights, and performance driven reporting so your business clearly understands how search growth contributes to revenue.
+                Your competitors are already optimizing for AI search. Get your free visibility audit and discover exactly what you're missing.
               </p>
 
               {/* Benefits checklist */}
@@ -91,14 +91,7 @@ export const FinalCTASection = ({ onSubmit, loading, variant = "dark" }: FinalCT
 
             {/* Right - Form */}
             <div className={`transition-all duration-700 delay-300 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'}`}>
-              <LeadCaptureForm 
-                onSubmit={onSubmit} 
-                loading={loading} 
-                formTitle="Book Your Free AI Visibility Consultation"
-                formDescription="In a brief consultation session, learn how you can enhance AI search results and generate higher-quality organic leads for your business."
-                formBadgeText="100% Free"
-                formButtonText="Book Your Free Consultation Now"
-              />
+              <LeadCaptureForm onSubmit={onSubmit} loading={loading} />
             </div>
           </div>
 
@@ -107,7 +100,7 @@ export const FinalCTASection = ({ onSubmit, loading, variant = "dark" }: FinalCT
             <div className={`flex flex-col sm:flex-row items-center justify-center gap-4 text-sm ${isDark ? 'text-white/60' : 'text-muted-foreground'}`}>
               <span>Trusted by leaders at:</span>
               <div className="flex items-center gap-4">
-                {["Digital Academy 360", "ICS", "BuildingWorld", "I-Sit"].map((company, i) => (
+                {["TechFlow", "ScaleUp", "GrowthIQ", "VentureX"].map((company, i) => (
                   <span key={i} className={`font-medium ${isDark ? 'text-white' : 'text-foreground'}`}>{company}</span>
                 ))}
               </div>

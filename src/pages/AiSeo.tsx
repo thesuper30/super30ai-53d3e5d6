@@ -1,7 +1,6 @@
 import { Navbar } from "@/components/Navbar";
 import { ServiceHeroSection } from "@/components/service/ServiceHeroSection";
 import { ClientLogosSection } from "@/components/landing/ClientLogosSection";
-import { SEOProofSection } from "@/components/landing/SEOProofSection";
 import { 
   Search, Globe, Bot, BarChart3, TrendingUp,
   Building2, ShoppingCart, Briefcase, GraduationCap, 
@@ -60,11 +59,11 @@ const AiSeo = () => {
         <meta property="og:description" content="3x visibility boost. 300% traffic growth. AI-powered SEO that dominates Google &amp; AI search results!" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://www.thesuper30.ai/seo-company-bangalore" />
-        <meta property="og:image" content="https://www.thesuper30.ai/og-image.jpg" />
+        <meta property="og:image" content="https://www.thesuper30.ai/super30-social-logo.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Your Competitors Are Ranking on Google. Why Aren't You?" />
         <meta name="twitter:description" content="3x visibility boost. 300% traffic growth. AI-powered SEO that dominates Google &amp; AI search results!" />
-        <meta name="twitter:image" content="https://www.thesuper30.ai/og-image.jpg" />
+        <meta name="twitter:image" content="https://www.thesuper30.ai/super30-social-logo.jpg" />
         <meta name="twitter:url" content="https://www.thesuper30.ai/seo-company-bangalore" />
       </Helmet>
 
@@ -114,8 +113,6 @@ const AiSeo = () => {
         </div>
 
         <ClientLogosSection />
-        <SEOProofSection />
-
         <Suspense fallback={null}>
           <ProblemSection />
           <RelevanceFilterSection />

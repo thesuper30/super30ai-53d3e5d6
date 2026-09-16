@@ -123,9 +123,9 @@ const menuItems: NavMenuItem[] = [
           { label: "Fashion & Apparel", href: "/industries/lifestyle" },
           { label: "Beauty & Cosmetics", href: "/industries/lifestyle" },
           { label: "Wellness & Fitness", href: "/industries/lifestyle" },
+          { label: "Dermatology, Pharmacy & Wellness", href: "/industries/lifestyle" },
+          { label: "Health & Wellness Retail", href: "/industries/lifestyle" },
           { label: "Home Decor & Furniture", href: "/industries/lifestyle" },
-          { label: "F&B (Restaurants, Cafes)", href: "/industries/lifestyle" },
-          { label: "Travel & Hospitality", href: "/industries/lifestyle" },
           { label: "Jewelry & Accessories", href: "/industries/lifestyle" },
           { label: "Weddings & Events", href: "/industries/lifestyle" },
         ],
@@ -144,21 +144,6 @@ const menuItems: NavMenuItem[] = [
         ],
       },
       {
-        label: "Healthcare",
-        href: "/industries/healthcare",
-        items: [
-          { label: "Hospitals", href: "/industries/healthcare" },
-          { label: "Clinics & Nursing Homes", href: "/industries/healthcare" },
-          { label: "Dental Practices", href: "/industries/healthcare" },
-          { label: "Diagnostic Centers/Labs", href: "/industries/healthcare" },
-          { label: "Pharma/Pharmacy Brands", href: "/industries/healthcare" },
-          { label: "Mental Health Clinics", href: "/industries/healthcare" },
-          { label: "Fertility & IVF Centers", href: "/industries/healthcare" },
-          { label: "Telehealth Platforms", href: "/industries/healthcare" },
-          { label: "Ayurveda & Alt. Medicine", href: "/industries/healthcare" },
-        ],
-      },
-      {
         label: "Businesses (B2B)",
         href: "/industries/b2b",
         items: [
@@ -169,6 +154,18 @@ const menuItems: NavMenuItem[] = [
           { label: "Professional Services", href: "/industries/b2b" },
           { label: "Logistics & Supply Chain", href: "/industries/b2b" },
           { label: "IT & Tech Services", href: "/industries/b2b" },
+        ],
+      },
+      {
+        label: "Hotel Management & Hospitality",
+        href: "/industries/hospitality",
+        items: [
+          { label: "Hotels & Resorts", href: "/industries/hospitality" },
+          { label: "Restaurants & Cafes", href: "/industries/hospitality" },
+          { label: "Cloud Kitchens", href: "/industries/hospitality" },
+          { label: "Travel & Tourism", href: "/industries/hospitality" },
+          { label: "Banquet Halls & Event Venues", href: "/industries/hospitality" },
+          { label: "Spa & Wellness Resorts", href: "/industries/hospitality" },
         ],
       },
     ],
@@ -331,7 +328,7 @@ export const Navbar = ({ forceWhiteBg = false }: { forceWhiteBg?: boolean }) => 
                             {/* Footer strip */}
                             <div className="flex items-center justify-between px-6 py-3 border-t border-border/60 bg-muted/30">
                               <p className="text-xs text-muted-foreground">
-                                6 industry hubs · 45+ sub-category specializations
+                                6 industry hubs · 44+ sub-category specializations
                               </p>
                               <Link
                                 to="/contact-us"
