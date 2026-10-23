@@ -2,7 +2,7 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { buildRouteGraph } from "../src/lib/schemaGraph.js";
-import { improveArticleHtml, searchDescription } from "../src/lib/seoContent.js";
+import { improveArticleHtml, industryTitle, searchDescription } from "../src/lib/seoContent.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -127,7 +127,7 @@ const OG_IMAGE = "https://www.thesuper30.ai/super30-social-logo.jpg";
 
 const stripSeoTags = (html) =>
   html
-    .replace(/\s*<title>[\s\S]*?<\/title>/gi, "")
+    .replace(/\s*<title\b[^>]*>[\s\S]*?<\/title>/gi, "")
     .replace(/\s*<meta[^>]+name="description"[^>]*>/gi, "")
     .replace(/\s*<meta[^>]+name="keywords"[^>]*>/gi, "")
     .replace(/\s*<meta[^>]+name="robots"[^>]*>/gi, "")
@@ -239,6 +239,17 @@ const NAV_LINKS = `<nav>
         <a href="/industries/b2b">B2B Marketing</a>
         <a href="/industries/hospitality">Hospitality Marketing</a>
       </nav>`;
+
+// The home page keeps its own rich article in index.html, but its nav must stay
+// identical to NAV_LINKS so every generated page offers the same crawl paths.
+const syncHomepageNav = (html) => {
+  const start = html.indexOf('<div id="seo-content"');
+  if (start === -1) return html;
+  const navStart = html.indexOf("<nav>", start);
+  const navEnd = html.indexOf("</nav>", navStart);
+  if (navStart === -1 || navEnd === -1) return html;
+  return html.slice(0, navStart) + NAV_LINKS + html.slice(navEnd + "</nav>".length);
+};
 
 // The static crawler block in index.html describes the home page. Every other
 // route gets its own block so the source HTML matches that page's content.
@@ -627,6 +638,27 @@ const generateBlogPages = async (distIndexHtml) => {
 
 
 
+  // The /blog listing must link to every post, otherwise crawlers treat the
+  // articles as orphan pages with no internal path to them.
+  try {
+    const blogIndexFile = path.join(rootDir, "dist", "blog", "index.html");
+    let blogIndex = await fs.readFile(blogIndexFile, "utf8");
+    const start = blogIndex.indexOf('<div id="seo-content"');
+    const navEnd = start === -1 ? -1 : blogIndex.indexOf("</nav>", start);
+    if (navEnd !== -1) {
+      const links = posts
+        .map((p) => `          <a href="/blog/${p.slug}">${escapeHtml(p.title)}</a>`)
+        .join("\n");
+      blogIndex =
+        blogIndex.slice(0, navEnd) +
+        `</nav>\n        <nav aria-label="Blog articles">\n${links}\n        </nav>` +
+        blogIndex.slice(navEnd + "</nav>".length);
+      await fs.writeFile(blogIndexFile, blogIndex, "utf8");
+    }
+  } catch {
+    /* blog listing page was not generated */
+  }
+
   // Sitemap: keep published post URLs in sync with the CMS.
   const sitemapFile = path.join(rootDir, "dist", "sitemap.xml");
   try {
@@ -650,7 +682,7 @@ const generateBlogPages = async (distIndexHtml) => {
 
 
 const main = async () => {
-  const [appSource, distIndexHtml, seoMetaRaw, schemaRoutesRaw, faqsRaw, organizationRaw] = await Promise.all([
+  const [appSource, distIndexHtmlRaw, seoMetaRaw, schemaRoutesRaw, faqsRaw, organizationRaw] = await Promise.all([
     fs.readFile(appFile, "utf8"),
     fs.readFile(distIndexFile, "utf8"),
     fs.readFile(seoMetaFile, "utf8"),
@@ -659,6 +691,7 @@ const main = async () => {
     fs.readFile(organizationFile, "utf8"),
   ]);
 
+  const distIndexHtml = syncHomepageNav(distIndexHtmlRaw);
   const seoMeta = JSON.parse(seoMetaRaw);
   const schemaRoutes = JSON.parse(schemaRoutesRaw);
   const faqs = JSON.parse(faqsRaw);
@@ -745,7 +778,7 @@ const main = async () => {
   for (const [slug, industry] of Object.entries(industries)) {
     const routePath = `/industries/${slug}`;
     const url = `${siteOrigin}${routePath}`;
-    const title = `${industry.name} Digital Marketing Agency Bangalore | The Super 30`;
+    const title = industryTitle(industry.name);
     const description = searchDescription(industry.description);
     const metadata = {
       title, description, canonical: url, robots: "index, follow",
