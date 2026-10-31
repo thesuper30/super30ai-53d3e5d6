@@ -10,6 +10,9 @@ export interface LeadData {
   monthly_revenue?: string;
   phone?: string;
   company_name?: string;
+  full_name?: string;
+  message?: string;
+  service_type?: string;
   step: number;
 }
 
@@ -29,6 +32,10 @@ export const useLead = () => {
           monthly_revenue: data.monthly_revenue,
           phone: data.phone,
           company_name: data.company_name,
+          full_name: data.full_name,
+          message: data.message,
+          service_type: data.service_type,
+          page_url: window.location.href,
           step: data.step || 1
         },
         headers: sessionId ? { 'x-session-id': sessionId } : undefined
@@ -57,12 +64,14 @@ export const useLead = () => {
       const { data: updatedLead, error } = await supabase.functions.invoke('create-lead', {
         body: {
           lead_id: id,
+          page_url: window.location.href,
           website_url: data.website_url || '',
           email: data.email || '',
           role: data.role,
           monthly_revenue: data.monthly_revenue,
           phone: data.phone,
           company_name: data.company_name,
+          full_name: data.full_name,
           step: data.step || 1
         },
         headers: sessionId ? { 'x-session-id': sessionId } : undefined

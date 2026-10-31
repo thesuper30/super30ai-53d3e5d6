@@ -1,6 +1,8 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 import { getCorsHeaders, handleCorsPreFlight } from "../_shared/cors.ts";
+import { leadIdentity } from "../_shared/lead-identity.js";
+import { deliverSheet, deliverChat } from "./notifications.js";
 
 // Rate limit: generous so genuine/testing enquiries are never dropped; only blocks floods
 const RATE_LIMIT = 60;
@@ -16,6 +18,7 @@ interface LeadData {
   monthly_revenue?: string;
   phone?: string;
   company_name?: string;
+  full_name?: string;
   service_type?: string;
   business_type?: string;
   preferred_platforms?: string[];
@@ -39,6 +42,16 @@ const handler = async (req: Request): Promise<Response> => {
     const clientIp = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
       req.headers.get("x-real-ip") || "unknown";
 
+    const rawBody = await req.json();
+    const optionalText = (value: unknown, max = 2000): string | undefined => {
+      if (value === undefined || value === null) return undefined;
+      if (typeof value !== 'string' || value.length > max) throw new Error('Invalid enquiry field');
+      return value.trim();
+    };
+    const body = { ...rawBody, email: optionalText(rawBody.email, 320) || '', website_url: optionalText(rawBody.website_url, 2000) || '',
+      phone: optionalText(rawBody.phone, 40), message: optionalText(rawBody.message, 5000), form_name: optionalText(rawBody.form_name, 200),
+      page_url: optionalText(rawBody.page_url), first_page_url: optionalText(rawBody.first_page_url), landing_page_url: optionalText(rawBody.landing_page_url) };
+    const pageUrl = body.page_url || req.headers.get('referer') || '';
     // Resolve a usable session. A missing or stale session must NEVER cause a lost lead.
     let sessionId: string | null = null;
     if (headerSessionId && uuidRegex.test(headerSessionId)) {
@@ -54,8 +67,8 @@ const handler = async (req: Request): Promise<Response> => {
       const { data: fallbackSession, error: fallbackError } = await supabase
         .from("sessions")
         .insert({
-          first_page_url: req.headers.get("referer") || "unknown",
-          current_page_url: req.headers.get("referer") || "unknown",
+          first_page_url: body.first_page_url || pageUrl,
+          current_page_url: pageUrl,
           referrer: "Unknown (recovered at submit)",
           user_agent: req.headers.get("user-agent") || "unknown",
           browser: "Unknown",
@@ -79,25 +92,39 @@ const handler = async (req: Request): Promise<Response> => {
     }
 
 
-    const body: LeadData & { lead_id?: string; full_name?: string; page_url?: string; message?: string } = await req.json();
     const { email, website_url, step, role, monthly_revenue, phone, company_name, lead_id, service_type, business_type, preferred_platforms } = body;
+    let identity;
+    try {
+      identity = leadIdentity(body);
+    } catch {
+      return new Response(JSON.stringify({ error: "Invalid name or company name" }), {
+        status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
 
     // Basic validation
-    if (!email || !website_url) {
+    if (!email && !phone) {
       return new Response(
-        JSON.stringify({ error: "Email and website URL are required" }),
+        JSON.stringify({ error: "Email or phone is required" }),
         { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
       );
     }
 
     // Email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email.trim())) {
+    if (email && !emailRegex.test(email.trim())) {
       return new Response(
         JSON.stringify({ error: "Invalid email format" }),
         { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
       );
     }
+    if (phone && !/^\+?[\d\s()-]{7,40}$/.test(phone)) {
+      return new Response(JSON.stringify({ error: 'Invalid phone' }), { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } });
+    }
+    const { data: session } = await supabase.from('sessions').select('first_page_url,referrer,ip_city,ip_state,ip_country,ip_address').eq('id', sessionId).maybeSingle();
+    const tracking = { first_page_url: session?.first_page_url || body.first_page_url || pageUrl,
+      landing_page_url: session?.first_page_url || body.landing_page_url || pageUrl, last_page_url: pageUrl,
+      message: body.message, form_name: body.form_name };
 
     const identifier = headerSessionId && uuidRegex.test(headerSessionId)
       ? `session:${headerSessionId}`
@@ -133,6 +160,7 @@ const handler = async (req: Request): Promise<Response> => {
     });
 
     let result;
+    let deliveryStatus;
 
     if (lead_id) {
       // Validate UUID format for lead_id
@@ -153,10 +181,11 @@ const handler = async (req: Request): Promise<Response> => {
           role,
           monthly_revenue,
           phone,
-          company_name,
+          ...identity,
           service_type,
           business_type,
           preferred_platforms,
+          ...tracking,
           updated_at: new Date().toISOString(),
         })
         .eq("id", lead_id)
@@ -174,6 +203,13 @@ const handler = async (req: Request): Promise<Response> => {
       result = data;
       console.log("Lead updated");
     } else {
+      // Flag repeat contacts without dropping new submissions or conflating their IDs.
+      const matches = await Promise.all([
+        ...(email ? [supabase.from('leads').select('id,created_at').eq('email', email.trim()).order('created_at', { ascending: false }).limit(1).maybeSingle()] : []),
+        ...(phone ? [supabase.from('leads').select('id,created_at').eq('phone', phone.trim()).order('created_at', { ascending: false }).limit(1).maybeSingle()] : []),
+      ]);
+      if (matches.some(match => match.error)) throw new Error('Could not check existing enquiries');
+      const previousEnquiry = matches.map(match => match.data).filter(Boolean).sort((a, b) => b.created_at.localeCompare(a.created_at))[0];
       // Create new lead
       const { data, error } = await supabase
         .from("leads")
@@ -184,11 +220,12 @@ const handler = async (req: Request): Promise<Response> => {
           role,
           monthly_revenue,
           phone,
-          company_name,
+          ...identity,
           service_type,
           business_type,
           preferred_platforms,
           session_id: sessionId,
+          ...tracking,
         })
         .select()
         .single();
@@ -203,36 +240,17 @@ const handler = async (req: Request): Promise<Response> => {
       result = data;
       console.log("Lead created");
 
-      // Send every new enquiry to the Google Sheet from the server (no browser blockers).
-      try {
-        const sheetRes = await fetch(GOOGLE_SHEET_URL, {
-          method: "POST",
-          headers: { "Content-Type": "text/plain;charset=utf-8" },
-          body: JSON.stringify({
-            name: (body.full_name || company_name || email).toString().slice(0, 200),
-            company: company_name || "",
-            website: website_url,
-            email: email.trim(),
-            phone: phone || "",
-            role: role || "",
-            revenue: monthly_revenue || "",
-            service: service_type || "",
-            page_url: (body.page_url || req.headers.get("referer") || "").toString().slice(0, 500),
-            message: (body.message || "").toString().slice(0, 2000),
-          }),
-          redirect: "manual",
-        });
-        let text = "";
-        const loc = sheetRes.headers.get("location");
-        if (loc) text = await (await fetch(loc)).text();
-        else text = await sheetRes.text();
-        console.log("Sheet sync:", sheetRes.status, text.slice(0, 200));
-      } catch (e) {
-        console.error("Sheet sync failed:", e);
-      }
+      // Both deliveries start after saving and finish independently; neither can lose a saved enquiry.
+      const context = { page_url: pageUrl, ...tracking, session, previous_enquiry: previousEnquiry };
+      const [google_sheet, google_chat] = await Promise.all([
+        deliverSheet(GOOGLE_SHEET_URL, result, context),
+        deliverChat(Deno.env.get("GOOGLE_API_KEY"), Deno.env.get("GOOGLE_CHAT_WEBHOOK_TOKEN"), result, context),
+      ]);
+      deliveryStatus = { google_sheet, google_chat };
+      console.log("Lead notification delivery", JSON.stringify({ lead_id: result.id, ...deliveryStatus }));
     }
 
-    return new Response(JSON.stringify(result), {
+    return new Response(JSON.stringify({ ...result, ...(deliveryStatus ? { delivery_status: deliveryStatus } : {}) }), {
       status: 200,
       headers: { ...corsHeaders, "Content-Type": "application/json" },
     });
